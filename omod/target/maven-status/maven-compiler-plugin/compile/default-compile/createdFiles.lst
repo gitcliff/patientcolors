@@ -1,0 +1,2 @@
+org\openmrs\module\patientcolors\web\controller\PatientcolorsController.class
+org\openmrs\module\patientcolors\extension\html\AdminList.class
