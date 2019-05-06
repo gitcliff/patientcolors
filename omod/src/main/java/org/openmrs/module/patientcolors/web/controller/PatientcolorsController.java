@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * This class configured as controller using annotation and mapped with the URL of
  * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
-@Controller("${rootArtifactid}.PatientcolorsController")
-@RequestMapping(value = "module/${rootArtifactid}/${rootArtifactid}.form")
+@Controller("patientcolors.PatientcolorsController")
+@RequestMapping(value = "module/patientcolors/patientcolors.form")
 public class PatientcolorsController {
 	
 	/** Logger for this class and subclasses */
@@ -39,7 +39,7 @@ public class PatientcolorsController {
 	UserService userService;
 	
 	/** Success form view name */
-	private final String VIEW = "/module/${rootArtifactid}/${rootArtifactid}";
+	private final String VIEW = "/module/patientcolors/patientcolors";
 	
 	/**
 	 * Initially called after the getUsers method to get the landing form name

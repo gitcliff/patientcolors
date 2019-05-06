@@ -34,7 +34,11 @@
         </property>
         <property name="target">
             <bean class="org.openmrs.module.patientcolors.api.impl.PatientcolorsServiceImpl">
-                <property name="dao" ref="patientcolors.PatientcolorsDao" />
+                <property name="PatientcolorsDao" ref="patientcolors.PatientcolorsDao">
+                <bean class="orgopenmrsmodulepatientcolorsdbhibernateDao"> <!-- Your DAO's concrete class -->
+                                <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+                            </bean>
+                </property>
             </bean>
         </property>
         <property name="preInterceptors">
@@ -47,12 +51,4 @@
 
     <!-- Adds PatientcolorsService to OpenMRS context so it can be accessed
     calling Context.getService(PatientcolorsService.class) -->
-    <bean parent="serviceContext">
-        <property name="moduleService">
-            <list>
-                <value>org.openmrs.module.patientcolors.api.PatientcolorsService</value>
-                <ref bean="patientcolors.PatientcolorsService" />
-            </list>
-        </property>
-    </bean>
 </beans>

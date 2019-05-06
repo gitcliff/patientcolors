@@ -9,10 +9,13 @@
  */
 package org.openmrs.module.patientcolors.api.impl;
 
+import java.util.List;
+
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.patientcolors.Item;
+import org.openmrs.module.patientcolors.patientcolors;
 import org.openmrs.module.patientcolors.api.PatientcolorsService;
 import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
 
@@ -48,5 +51,29 @@ public class PatientcolorsServiceImpl extends BaseOpenmrsService implements Pati
 		}
 		
 		return dao.saveItem(item);
+	}
+	
+	@Override
+	public List<patientcolors> getAllpatientcolrs() {
+		// TODO Auto-generated method stub
+		return dao.getAllpatientcolors();
+	}
+	
+	@Override
+	public patientcolors getpatientcolor(Integer patientcolorId) {
+		// TODO Auto-generated method stub
+		return dao.getpatientcolor(patientcolorId);
+	}
+	
+	@Override
+	public patientcolors savePatientcolor(patientcolors patientcolor) {
+		// TODO Auto-generated method stub
+		return ((PatientcolorsService) dao).savePatientcolor(patientcolor);
+	}
+	
+	@Override
+	public void purgePatientcolor(patientcolors patientcolor) {
+		// TODO Auto-generated method stub
+		((PatientcolorsService) dao).purgePatientcolor(patientcolor);
 	}
 }
