@@ -9,29 +9,25 @@
  */
 package org.openmrs.module.patientcolors.api.dao;
 
-import org.hibernate.criterion.Restrictions;
-import org.openmrs.api.db.hibernate.DbSession;
-import org.openmrs.api.db.hibernate.DbSessionFactory;
-import org.openmrs.module.patientcolors.Item;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository("patientcolors.PatientcolorsDao")
-public class PatientcolorsDao {
+import org.openmrs.api.db.DAOException;
+import org.openmrs.module.patientcolors.Item;
+import org.openmrs.module.patientcolors.patientcolors;
+
+
+public interface PatientcolorsDao {
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
+	public Item getItemByUuid(String uuid);
 	
-	private DbSession getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+	public Item saveItem(Item item);
 	
-	public Item getItemByUuid(String uuid) {
-		return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
-	}
+	public patientcolors getpatientcolor(Integer patientcolorId) throws DAOException;
 	
-	public Item saveItem(Item item) {
-		getSession().saveOrUpdate(item);
-		return item;
-	}
+	public List<patientcolors> getAllpatientcolors() throws DAOException;
+	
+	public PatientcolorsDao savepatientcolor(PatientcolorsDao patientcolorId) throws DAOException;
+	
+	public void purgepatientcolor(PatientcolorsDao patientcolor) throws DAOException;
+	
 }

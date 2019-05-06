@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    <hibernate-mapping package="org.openmrs.module.patientcolors">
+    <class name="patientcolors"
+        table="${project.parent.artifactId}_item">
+        <id name="patientcolorId" type="int" column="patientcolor_item_id" unsaved-value="0">
+            <generator class="native" />
+        </id>
+        <discriminator column="patientcolor_id" insert="false" />
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" />
+        <property name="name" type="java.lang.String" column="name" length="255" unique="true" />
+        <property name="description" type="java.lang.String" column="description" length="255" />    
+    </class>
+</hibernate-mapping>

@@ -9,17 +9,21 @@
  */
 package org.openmrs.module.patientcolors.api;
 
+import java.util.List;
+
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.patientcolors.PatientcolorsConfig;
 import org.openmrs.module.patientcolors.Item;
+import org.openmrs.module.patientcolors.PatientcolorsConfig;
+import org.openmrs.module.patientcolors.patientcolors;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The main service of this module, which is exposed for other modules. See
  * moduleApplicationContext.xml on how it is wired up.
  */
+@Transactional
 public interface PatientcolorsService extends OpenmrsService {
 	
 	/**
@@ -30,14 +34,22 @@ public interface PatientcolorsService extends OpenmrsService {
 	 * @return
 	 * @throws APIException
 	 */
-	@Authorized()
 	@Transactional(readOnly = true)
-	Item getItemByUuid(String uuid) throws APIException;
+	List<patientcolors> getAllpatientcolrs();
+	
+	@Transactional(readOnly = true)
+	patientcolors getpatientcolor(Integer patientcolorId);
+	
+	patientcolors savePatientcolor(patientcolors patientcolor);
+	
+	void purgePatientcolor(patientcolors patientcolor);
 	
 	/**
-	 * Saves an item. Sets the owner to superuser, if it is not set. It can be called by users with
-	 * this module's privilege. It is executed in a transaction.
-	 * 
+	 * @Authorized()
+	 * @Transactional(readOnly = true) Item getItemByUuid(String uuid) throws APIException; /**
+	 *                         Saves an item. Sets the owner to superuser, if it is not set. It can
+	 *                         be called by users with this module's privilege. It is executed in a
+	 *                         transaction.
 	 * @param item
 	 * @return
 	 * @throws APIException
@@ -45,4 +57,7 @@ public interface PatientcolorsService extends OpenmrsService {
 	@Authorized(PatientcolorsConfig.MODULE_PRIVILEGE)
 	@Transactional
 	Item saveItem(Item item) throws APIException;
+	
+	Item getItemByUuid(String uuid) throws APIException;
+	
 }
