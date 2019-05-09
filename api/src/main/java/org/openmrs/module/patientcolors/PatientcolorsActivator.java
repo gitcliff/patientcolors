@@ -23,6 +23,7 @@ public class PatientcolorsActivator extends BaseModuleActivator {
 	/**
 	 * @see #started()
 	 */
+	@Override
 	public void started() {
 		log.info("Started Patientcolors");
 	}
@@ -30,6 +31,7 @@ public class PatientcolorsActivator extends BaseModuleActivator {
 	/**
 	 * @see #shutdown()
 	 */
+	
 	public void shutdown() {
 		log.info("Shutdown Patientcolors");
 	}

@@ -11,16 +11,14 @@ package org.openmrs.module.patientcolors.api.impll;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.patientcolors.patientcolors;
 import org.openmrs.module.patientcolors.api.PatientcolorsService;
 import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PatientcolorsServiceImpl extends BaseOpenmrsService implements PatientcolorsService {
-	
-	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	PatientcolorsDao dao;
 	
@@ -36,27 +34,40 @@ public class PatientcolorsServiceImpl extends BaseOpenmrsService implements Pati
 	}
 	
 	@Override
-	public List<patientcolors> getAllpatientcolrs() {
-		// TODO Auto-generated method stub
+	public List<patientcolors> getAllpatientcolors() {
+		
 		return dao.getAllpatientcolors();
 	}
 	
 	@Override
-	public patientcolors getpatientcolor(Integer patientcolorId) {
-		// TODO Auto-generated method stub
+	public List<patientcolors> getpatientcolor(Integer patientcolorId) {
+		
 		return dao.getpatientcolor(patientcolorId);
 	}
 	
 	@Override
-	public patientcolors savePatientcolor(PatientcolorsDao patientcolor) {
-		// TODO Auto-generated method stub
-		return (patientcolors) dao.savepatientcolor(patientcolor);
+	public patientcolors savepatientcolor(patientcolors patientcolor) {
+		
+		return dao.savepatientcolor(patientcolor);
 	}
 	
 	@Override
-	public void purgePatientcolor(PatientcolorsDao patientcolor) {
-		// TODO Auto-generated method stub
+	public void purgePatientcolor(patientcolors patientcolor) {
+		
 		dao.purgepatientcolor(patientcolor);
+	}
+	
+	@Override
+	public List<patientcolors> getAllpatientcolors(String name, Integer patientId, Integer patientcolorsId) {
+		
+		return dao.getAllpatientcolors(name, patientId, patientcolorsId);
+	}
+	
+	@Override
+	public void purgePatientcolor(Integer patientcolorId) {
+		
+		dao.purgepatientcolor(patientcolorId);
+		
 	}
 	
 }

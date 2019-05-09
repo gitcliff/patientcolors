@@ -2,18 +2,22 @@ package org.openmrs.module.patientcolors;
 
 import java.io.Serializable;
 
-import org.openmrs.BaseOpenmrsObject;
+import org.openmrs.BaseOpenmrsData;
 
-public class patientcolors extends BaseOpenmrsObject implements Serializable {
+public class patientcolors extends BaseOpenmrsData implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer patientcolorId;
+	private Integer patientcolorsId;
 	
 	private String name;
+	
+	private Integer patientId;
+	
+	private String patientname;
 	
 	public String getName() {
 		return name;
@@ -23,24 +27,39 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 		this.name = name;
 	}
 	
-	public Integer getPatientcolorId() {
-		return patientcolorId;
+	public Integer getPatientcolorsId() {
+		return patientcolorsId;
 	}
 	
-	public void setPatientcolorId(Integer patientcolorId) {
-		this.patientcolorId = patientcolorId;
+	public void setPatientcolorsId(Integer patientcolorsId) {
+		this.patientcolorsId = patientcolorsId;
 	}
 	
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+	
+	public Integer getPatientId() {
+		return patientId;
+	}
+	
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
 	}
 	
 	@Override
 	public void setId(Integer arg0) {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	public String getPatientname() {
+		return patientname;
+	}
+	
+	public void setPatientname(String patientname) {
+		this.patientname = patientname;
 	}
 	
 }

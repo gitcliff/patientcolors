@@ -11,10 +11,8 @@ package org.openmrs.module.patientcolors.api;
 
 import java.util.List;
 
-import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.patientcolors.patientcolors;
-import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -24,23 +22,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface PatientcolorsService extends OpenmrsService {
 	
-	/**
-	 * Returns an item by uuid. It can be called by any authenticated user. It is fetched in read
-	 * only transaction.
-	 * 
-	 * @param <patientcolors>
-	 * @param uuid
-	 * @return
-	 * @throws APIException
-	 */
 	@Transactional(readOnly = true)
-	List<patientcolors> getAllpatientcolrs();
+	List<patientcolors> getAllpatientcolors();
 	
 	@Transactional(readOnly = true)
-	patientcolors getpatientcolor(Integer patientcolorId);
+	List<patientcolors> getAllpatientcolors(String name, Integer patientId, Integer patientcolorsId);
 	
-	patientcolors savePatientcolor(PatientcolorsDao patientcolor);
+	@Transactional(readOnly = true)
+	List<patientcolors> getpatientcolor(Integer patientcolorId);
 	
-	void purgePatientcolor(PatientcolorsDao patientcolor);
+	void purgePatientcolor(patientcolors patientcolor);
+	
+	void purgePatientcolor(Integer patientcolorId);
+	
+	patientcolors savepatientcolor(patientcolors patientcolorss);
 	
 }

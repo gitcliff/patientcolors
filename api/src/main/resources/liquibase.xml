@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
  
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,27 +12,33 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
- 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and PatientcolorsDaoTest -->
- 	<!--
-	<changeSet id="patientcolors-2016-08-02-12-21" author="cliff">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="patientcolors_patientcolors"/></not>
-		</preConditions>
-		<comment>
-			Creating the patientcolors_patientcolors table
-		</comment>
-		<createTable tableName="patientcolors_patientcolors">
-			<column name="patientcolors_id" type="int" autoIncrement="true">
+    
+	<changeSet author="cliff" id="201608021221" >
+		<comment>Creating the patient_colors table</comment>
+		<createTable tableName="patient_colors">
+			<column autoIncrement="true" name="patient_colors_id" type="int" >
 				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="uuid" type="char(38)">
-				<constraints nullable="false" unique="true"></constraints>
 			</column>
 			<column name="name" type="varchar(255)" />
 		</createTable>
-        <addForeignKeyConstraint constraintName="patientcolors_patientcolors_owner_fk" baseTableName="patientcolors_patientcolors" baseColumnNames="owner"  referencedTableName="users"
-                                 referencedColumnNames="user_id" />
-    </changeSet> -->
-    
+	</changeSet>
+	<changeSet author="cliff" id="201608021222" >
+		<comment>Adding patient_id to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="patient_id" type="int" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021223" >
+		<comment>Adding patient_name to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="patient_name" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021224" >
+		<comment>Adding uuid to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="uuid" type="varchar(38)" />
+		</addColumn>
+	</changeSet>
+	
 </databaseChangeLog>

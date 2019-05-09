@@ -16,12 +16,16 @@ import org.openmrs.module.patientcolors.patientcolors;
 
 public interface PatientcolorsDao {
 	
-	public patientcolors getpatientcolor(Integer patientcolorId) throws DAOException;
+	public List<patientcolors> getpatientcolor(Integer patientcolor) throws DAOException;
 	
 	public List<patientcolors> getAllpatientcolors() throws DAOException;
 	
-	public PatientcolorsDao savepatientcolor(PatientcolorsDao patientcolorId) throws DAOException;
+	public List<patientcolors> getAllpatientcolors(String string, int patientId, int patientcolorsId) throws DAOException;
 	
-	public void purgepatientcolor(PatientcolorsDao patientcolor) throws DAOException;
+	public patientcolors savepatientcolor(patientcolors patientcolor) throws DAOException;
+	
+	public patientcolors purgepatientcolor(patientcolors patientcolor) throws DAOException;
+	
+	public Integer purgepatientcolor(Integer patientcolorId) throws DAOException;
 	
 }
