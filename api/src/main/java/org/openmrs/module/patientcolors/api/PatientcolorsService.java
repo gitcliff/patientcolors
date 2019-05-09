@@ -11,12 +11,10 @@ package org.openmrs.module.patientcolors.api;
 
 import java.util.List;
 
-import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.patientcolors.Item;
-import org.openmrs.module.patientcolors.PatientcolorsConfig;
 import org.openmrs.module.patientcolors.patientcolors;
+import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -30,6 +28,7 @@ public interface PatientcolorsService extends OpenmrsService {
 	 * Returns an item by uuid. It can be called by any authenticated user. It is fetched in read
 	 * only transaction.
 	 * 
+	 * @param <patientcolors>
 	 * @param uuid
 	 * @return
 	 * @throws APIException
@@ -40,24 +39,8 @@ public interface PatientcolorsService extends OpenmrsService {
 	@Transactional(readOnly = true)
 	patientcolors getpatientcolor(Integer patientcolorId);
 	
-	patientcolors savePatientcolor(patientcolors patientcolor);
+	patientcolors savePatientcolor(PatientcolorsDao patientcolor);
 	
-	void purgePatientcolor(patientcolors patientcolor);
-	
-	/**
-	 * @Authorized()
-	 * @Transactional(readOnly = true) Item getItemByUuid(String uuid) throws APIException; /**
-	 *                         Saves an item. Sets the owner to superuser, if it is not set. It can
-	 *                         be called by users with this module's privilege. It is executed in a
-	 *                         transaction.
-	 * @param item
-	 * @return
-	 * @throws APIException
-	 */
-	@Authorized(PatientcolorsConfig.MODULE_PRIVILEGE)
-	@Transactional
-	Item saveItem(Item item) throws APIException;
-	
-	Item getItemByUuid(String uuid) throws APIException;
+	void purgePatientcolor(PatientcolorsDao patientcolor);
 	
 }

@@ -27,17 +27,18 @@
 
     <!-- Wraps PatientcolorsService methods in DB transactions and OpenMRS interceptors,
     which set audit info like dateCreated, changedBy, etc.-->
-    <bean id="patientcolors.PatientcolorsService"
-            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager">
-            <ref bean="transactionManager" />
-        </property>
+    <bean parent="serviceContext">
+    <property name="moduleService">
+    <list>
+    <value>org.openmrs.module.patientcolors.api.PatientcolorsService</value>
+            <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager"><ref bean="transactionManager" /></property>
         <property name="target">
-            <bean class="org.openmrs.module.patientcolors.api.impl.PatientcolorsServiceImpl">
-                <property name="PatientcolorsDao" ref="patientcolors.PatientcolorsDao">
-                <bean class="orgopenmrsmodulepatientcolorsdbhibernateDao"> <!-- Your DAO's concrete class -->
-                                <property name="sessionFactory"><ref bean="sessionFactory"/></property>
-                            </bean>
+            <bean class="org/openmrs/module/patientcolors/api/impll/PatientcolorsServiceImpl">
+                <property name="dao">
+                <bean class="org/openmrs/module/patientcolors/api/db/HibernatepatientcolorsDao">
+                <property name="sessionFactory"><ref bean="dbSessionFactory"/></property>
+                </bean>
                 </property>
             </bean>
         </property>
@@ -45,10 +46,10 @@
             <ref bean="serviceInterceptors" />
         </property>
         <property name="transactionAttributeSource">
-            <ref bean="transactionAttributeSource" />
+            <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
         </property>
     </bean>
-
-    <!-- Adds PatientcolorsService to OpenMRS context so it can be accessed
-    calling Context.getService(PatientcolorsService.class) -->
+     </list>
+    </property>
+</bean>
 </beans>

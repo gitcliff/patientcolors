@@ -84,7 +84,10 @@
 	</servlet>
 	-->
 	<!-- /Servlets -->
-	
+	<!-- Mapping File for the Flag Table -->
+	<mappingFiles>
+		patientcolors.hbm.xml
+	</mappingFiles>
 	
 	<!-- Internationalization -->
 	<!-- All message codes should start with @MODULE_ID@.* -->

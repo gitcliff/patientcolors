@@ -1,4 +1,4 @@
-package orgopenmrsmodulepatientcolorsdbhibernateDao;
+package org.openmrs.module.patientcolors.api.db;
 
 import java.util.List;
 
@@ -6,11 +6,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.openmrs.api.db.DAOException;
-import org.openmrs.module.patientcolors.Item;
 import org.openmrs.module.patientcolors.patientcolors;
 import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
 
-public class HibernatepatientcolorDao implements PatientcolorsDao {
+public class HibernatepatientcolorsDao implements PatientcolorsDao {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
@@ -41,21 +40,9 @@ public class HibernatepatientcolorDao implements PatientcolorsDao {
 	}
 	
 	@Override
-	public Item getItemByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public Item saveItem(Item item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public PatientcolorsDao savepatientcolor(PatientcolorsDao patientcolorId) throws DAOException {
 		// TODO Auto-generated method stub
-		((HibernatepatientcolorDao) sessionFactory.getCurrentSession()).savepatientcolor(patientcolorId);
+		((HibernatepatientcolorsDao) sessionFactory.getCurrentSession()).savepatientcolor(patientcolorId);
 		return patientcolorId;
 	}
 	

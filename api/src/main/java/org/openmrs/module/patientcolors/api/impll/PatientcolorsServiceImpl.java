@@ -7,23 +7,22 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.patientcolors.api.impl;
+package org.openmrs.module.patientcolors.api.impll;
 
 import java.util.List;
 
-import org.openmrs.api.APIException;
-import org.openmrs.api.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
-import org.openmrs.module.patientcolors.Item;
 import org.openmrs.module.patientcolors.patientcolors;
 import org.openmrs.module.patientcolors.api.PatientcolorsService;
 import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
 
 public class PatientcolorsServiceImpl extends BaseOpenmrsService implements PatientcolorsService {
 	
-	PatientcolorsDao dao;
+	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	UserService userService;
+	PatientcolorsDao dao;
 	
 	/**
 	 * Injected in moduleApplicationContext.xml
@@ -32,25 +31,8 @@ public class PatientcolorsServiceImpl extends BaseOpenmrsService implements Pati
 		this.dao = dao;
 	}
 	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
-	@Override
-	public Item getItemByUuid(String uuid) throws APIException {
-		return dao.getItemByUuid(uuid);
-	}
-	
-	@Override
-	public Item saveItem(Item item) throws APIException {
-		if (item.getOwner() == null) {
-			item.setOwner(userService.getUser(1));
-		}
-		
-		return dao.saveItem(item);
+	public PatientcolorsDao getDao() {
+		return dao;
 	}
 	
 	@Override
@@ -66,14 +48,15 @@ public class PatientcolorsServiceImpl extends BaseOpenmrsService implements Pati
 	}
 	
 	@Override
-	public patientcolors savePatientcolor(patientcolors patientcolor) {
+	public patientcolors savePatientcolor(PatientcolorsDao patientcolor) {
 		// TODO Auto-generated method stub
-		return ((PatientcolorsService) dao).savePatientcolor(patientcolor);
+		return (patientcolors) dao.savepatientcolor(patientcolor);
 	}
 	
 	@Override
-	public void purgePatientcolor(patientcolors patientcolor) {
+	public void purgePatientcolor(PatientcolorsDao patientcolor) {
 		// TODO Auto-generated method stub
-		((PatientcolorsService) dao).purgePatientcolor(patientcolor);
+		dao.purgepatientcolor(patientcolor);
 	}
+	
 }
