@@ -11,16 +11,14 @@ package org.openmrs.module.patientcolors.api.impll;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.patientcolors.patientcolors;
 import org.openmrs.module.patientcolors.api.PatientcolorsService;
 import org.openmrs.module.patientcolors.api.dao.PatientcolorsDao;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PatientcolorsServiceImpl extends BaseOpenmrsService implements PatientcolorsService {
-	
-	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	PatientcolorsDao dao;
 	
