@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HibernatepatientcolorsDao implements PatientcolorsDao {
 	
-
 	private DbSessionFactory sessionFactory;
 	
 	/**
