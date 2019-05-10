@@ -12,15 +12,9 @@ package org.openmrs.module.patientcolors.api.dao;
 import java.util.List;
 
 import org.openmrs.api.db.DAOException;
-import org.openmrs.module.patientcolors.Item;
 import org.openmrs.module.patientcolors.patientcolors;
 
-
 public interface PatientcolorsDao {
-	
-	public Item getItemByUuid(String uuid);
-	
-	public Item saveItem(Item item);
 	
 	public patientcolors getpatientcolor(Integer patientcolorId) throws DAOException;
 	

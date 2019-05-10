@@ -1,9 +1,7 @@
-org\openmrs\module\patientcolors\api\PatientcolorsService.class
-org\openmrs\module\patientcolors\api\impl\PatientcolorsServiceImpl.class
+org\openmrs\module\patientcolors\api\db\HibernatepatientcolorsDao.class
 org\openmrs\module\patientcolors\api\dao\PatientcolorsDao.class
 org\openmrs\module\patientcolors\PatientcolorsConfig.class
 org\openmrs\module\patientcolors\PatientcolorsActivator.class
 org\openmrs\module\patientcolors\patientcolors.class
-orgopenmrsmodulepatientcolorsdbhibernateDao\HibernatepatientcolorDao.class
-org\openmrs\module\patientcolors\api\dao\Item.class
-org\openmrs\module\patientcolors\Item.class
+org\openmrs\module\patientcolors\api\impll\PatientcolorsServiceImpl.class
+org\openmrs\module\patientcolors\api\PatientcolorsService.class
