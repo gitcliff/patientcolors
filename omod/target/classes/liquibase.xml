@@ -12,27 +12,14 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
- 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and PatientcolorsDaoTest -->
- 	<!--
+
 	<changeSet id="patientcolors-2016-08-02-12-21" author="cliff">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="patientcolors_patientcolors"/></not>
-		</preConditions>
-		<comment>
-			Creating the patientcolors_patientcolors table
-		</comment>
-		<createTable tableName="patientcolors_patientcolors">
-			<column name="patientcolors_id" type="int" autoIncrement="true">
+		<comment>Creating the patient_colors table</comment>
+		<createTable tableName="patient_colors">
+			<column name="patientcolor_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="uuid" type="char(38)">
-				<constraints nullable="false" unique="true"></constraints>
 			</column>
 			<column name="name" type="varchar(255)" />
 		</createTable>
-        <addForeignKeyConstraint constraintName="patientcolors_patientcolors_owner_fk" baseTableName="patientcolors_patientcolors" baseColumnNames="owner"  referencedTableName="users"
-                                 referencedColumnNames="user_id" />
     </changeSet> -->
-    
 </databaseChangeLog>

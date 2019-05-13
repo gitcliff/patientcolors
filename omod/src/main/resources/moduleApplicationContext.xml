@@ -34,9 +34,9 @@
             <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager"><ref bean="transactionManager" /></property>
         <property name="target">
-            <bean class="org/openmrs/module/patientcolors/api/impll/PatientcolorsServiceImpl">
+            <bean class="org.openmrs.module.patientcolors.api.impll.PatientcolorsServiceImpl">
                 <property name="dao">
-                <bean class="org/openmrs/module/patientcolors/api/db/HibernatepatientcolorsDao">
+                <bean class="org.openmrs.module.patientcolors.api.db.HibernatepatientcolorsDao">
                 <property name="sessionFactory"><ref bean="dbSessionFactory"/></property>
                 </bean>
                 </property>
