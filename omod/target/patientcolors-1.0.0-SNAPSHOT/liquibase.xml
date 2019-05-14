@@ -13,10 +13,10 @@
         for a list of supported elements and attributes
     -->
 
-	<changeSet id="patientcolors-2016-08-02-12-21" author="cliff">
+	<changeSet author="cliff" id="201608021221" >
 		<comment>Creating the patient_colors table</comment>
 		<createTable tableName="patient_colors">
-			<column name="patientcolor_id" type="int" autoIncrement="true">
+			<column autoIncrement="true" name="patientcolor_id" type="int" >
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="name" type="varchar(255)" />

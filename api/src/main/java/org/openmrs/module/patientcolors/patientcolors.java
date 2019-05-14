@@ -11,7 +11,7 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer patientcolorId;
+	private Integer patientcolorsId;
 	
 	private String name;
 	
@@ -24,11 +24,11 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 	}
 	
 	public Integer getPatientcolorId() {
-		return patientcolorId;
+		return patientcolorsId;
 	}
 	
 	public void setPatientcolorId(Integer patientcolorId) {
-		this.patientcolorId = patientcolorId;
+		this.patientcolorsId = patientcolorId;
 	}
 	
 	@Override
