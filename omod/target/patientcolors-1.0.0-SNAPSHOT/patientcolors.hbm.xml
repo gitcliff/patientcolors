@@ -8,7 +8,6 @@
             <generator class="native" />
         </id>
         <discriminator column="patientcolor_id" insert="false" />
-        <property name="patientcolor_Id" type="int" column="patientcolor_id" length="38" unique="true" />
         <property name="name" type="java.lang.String" column="name" length="255" unique="true" /> 
     </class>
 </hibernate-mapping>
