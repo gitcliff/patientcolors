@@ -9,5 +9,6 @@
         </id>
         <discriminator column="patient_colors_id" insert="false" />
         <property name="name" type="java.lang.String" column="name" length="255" unique="true" /> 
+        <property name="patientId" type="int" column="patient_id" unique="true" />
     </class>
 </hibernate-mapping>

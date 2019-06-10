@@ -35,25 +35,25 @@ public class PatientcolorsServiceImpl extends BaseOpenmrsService implements Pati
 	
 	@Override
 	public List<patientcolors> getAllpatientcolrs() {
-		// TODO Auto-generated method stub
+		
 		return dao.getAllpatientcolors();
 	}
 	
 	@Override
 	public patientcolors getpatientcolor(Integer patientcolorId) {
-		// TODO Auto-generated method stub
+		
 		return dao.getpatientcolor(patientcolorId);
 	}
 	
 	@Override
-	public patientcolors savePatientcolor(PatientcolorsDao patientcolor) {
-		// TODO Auto-generated method stub
-		return (patientcolors) dao.savepatientcolor(patientcolor);
+	public patientcolors savepatientcolor(patientcolors patientcolor) {
+		
+		return dao.savepatientcolor(patientcolor);
 	}
 	
 	@Override
-	public void purgePatientcolor(PatientcolorsDao patientcolor) {
-		// TODO Auto-generated method stub
+	public void purgePatientcolor(patientcolors patientcolor) {
+		
 		dao.purgepatientcolor(patientcolor);
 	}
 	

@@ -4,10 +4,11 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
     <hibernate-mapping package="org.openmrs.module.patientcolors">
     <class name="patientcolors" table="patient_colors">
-        <id name="patientcolorId" type="int" column="patientcolor_id" unsaved-value="0">
+        <id name="patientcolorsId" type="int" column="patient_colors_id" unsaved-value="0">
             <generator class="native" />
         </id>
-        <discriminator column="patientcolor_id" insert="false" />
+        <discriminator column="patient_colors_id" insert="false" />
         <property name="name" type="java.lang.String" column="name" length="255" unique="true" /> 
+        <property name="patientId" type="int" column="patient_id" unique="true" />
     </class>
 </hibernate-mapping>

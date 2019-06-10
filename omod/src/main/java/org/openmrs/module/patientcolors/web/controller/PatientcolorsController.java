@@ -9,79 +9,71 @@
  */
 package org.openmrs.module.patientcolors.web.controller;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.openmrs.User;
-import org.openmrs.api.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.patientcolors.patientcolors;
+import org.openmrs.module.patientcolors.api.PatientcolorsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This class configured as controller using annotation and mapped with the URL of
  * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
-@Controller("patientcolors.PatientcolorsController")
-@RequestMapping(value = "module/patientcolors/patientcolors.form")
+@Controller
 public class PatientcolorsController {
 	
 	/** Logger for this class and subclasses */
-	protected final Log log = LogFactory.getLog(getClass());
+	protected final Logger log = LoggerFactory.getLogger(PatientcolorsController.class);
 	
-	@Autowired
-	UserService userService;
-	
-	/** Success form view name */
-	private final String VIEW = "/module/patientcolors/patientcolors";
-	
-	/**
-	 * Initially called after the getUsers method to get the landing form name
-	 * 
-	 * @return String form view name
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String onGet() {
-		return VIEW;
+	@RequestMapping(value = "/module/patientcolors/patientcolors.form", method = RequestMethod.GET)
+	public ModelAndView formGet(ModelMap map) {
+		Collection<Patient> patients = Context.getPatientService().getAllPatients();
+		map.addAttribute("patients", patients);
+		
+		ModelAndView modelAndView = new ModelAndView("/module/patientcolors/patientcolors");
+		return modelAndView;
 	}
 	
-	/**
-	 * All the parameters are optional based on the necessity
-	 * 
-	 * @param httpSession
-	 * @param anyRequestObject
-	 * @param errors
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public String onPost(HttpSession httpSession, @ModelAttribute("anyRequestObject") Object anyRequestObject,
-	        BindingResult errors) {
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "/module/patientcolors/patientcolors.form", method = RequestMethod.POST)
+	public String formPost(@ModelAttribute("patientcolors") patientcolors patientcolorss, BindingResult errors,
+	        ModelMap model, HttpSession session, HttpServletRequest request) throws IOException {
 		
 		if (errors.hasErrors()) {
-			// return error view
+			return "/module/patientcolors/patientcolors.form";
+		} else {
+			patientcolors xxx = new patientcolors();
+			
+			xxx.setName((String) request.getAttribute("color"));
+			String patientid = (String) request.getAttribute("patient_id");
+			try {
+			xxx.setPatientId(Integer.parseInt(patientid));
+			}
+			catch (NumberFormatException e) {
+				log.info("the exception has been handled");
+			}
+			Context.getService(PatientcolorsService.class).savepatientcolor(xxx);
+			
+			Collection<Patient> patients = Context.getPatientService().getAllPatients();
+			model.addAttribute("patients", patients);
+			
+			return "/module/patientcolors/viewpatientcolors";
+			
 		}
 		
-		return VIEW;
 	}
-	
-	/**
-	 * This class returns the form backing object. This can be a string, a boolean, or a normal java
-	 * pojo. The bean name defined in the ModelAttribute annotation and the type can be just defined
-	 * by the return type of this method
-	 */
-	@ModelAttribute("users")
-	protected List<User> getUsers() throws Exception {
-		List<User> users = userService.getAllUsers();
-		
-		// this object will be made available to the jsp page under the variable name
-		// that is defined in the @ModuleAttribute tag
-		return users;
-	}
-	
 }
