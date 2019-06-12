@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
  
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,14 +12,20 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-
+    
 	<changeSet author="cliff" id="201608021221" >
 		<comment>Creating the patient_colors table</comment>
 		<createTable tableName="patient_colors">
-			<column autoIncrement="true" name="patientcolor_id" type="int" >
+			<column autoIncrement="true" name="patient_colors_id" type="int" >
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="name" type="varchar(255)" />
 		</createTable>
-    </changeSet> -->
+	</changeSet>
+	<changeSet author="cliff" id="201608021222" >
+		<comment>Adding patient_id to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="patient_id" type="int" />
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>

@@ -27,26 +27,26 @@ public class HibernatepatientcolorsDao implements PatientcolorsDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<patientcolors> getAllpatientcolors() throws DAOException {
-		// TODO Auto-generated method stub
+		
 		return sessionFactory.getCurrentSession().createCriteria(patientcolors.class).list();
 	}
 	
 	@Override
-	public patientcolors getpatientcolor(Integer patientcolorId) throws DAOException {
-		// TODO Auto-generated method stub
-		return (patientcolors) sessionFactory.getCurrentSession().get(patientcolors.class, patientcolorId);
+	public patientcolors getpatientcolor(Integer patientcolorsId) throws DAOException {
+		
+		return (patientcolors) sessionFactory.getCurrentSession().get(patientcolors.class, patientcolorsId);
 	}
 	
 	@Override
-	public PatientcolorsDao savepatientcolor(PatientcolorsDao patientcolorId) throws DAOException {
-		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().save(patientcolorId);
-		return patientcolorId;
+	public patientcolors savepatientcolor(patientcolors patientcolorsId) throws DAOException {
+		
+		sessionFactory.getCurrentSession().save(patientcolorsId);
+		return patientcolorsId;
 	}
 	
 	@Override
-	public void purgepatientcolor(PatientcolorsDao patientcolor) throws DAOException {
-		// TODO Auto-generated method stub
+	public void purgepatientcolor(patientcolors patientcolor) throws DAOException {
+		
 		sessionFactory.getCurrentSession().delete(patientcolor);
 		
 	}

@@ -20,8 +20,8 @@ public interface PatientcolorsDao {
 	
 	public List<patientcolors> getAllpatientcolors() throws DAOException;
 	
-	public PatientcolorsDao savepatientcolor(PatientcolorsDao patientcolorId) throws DAOException;
+	public patientcolors savepatientcolor(patientcolors patientcolor) throws DAOException;
 	
-	public void purgepatientcolor(PatientcolorsDao patientcolor) throws DAOException;
+	public void purgepatientcolor(patientcolors patientcolor) throws DAOException;
 	
 }

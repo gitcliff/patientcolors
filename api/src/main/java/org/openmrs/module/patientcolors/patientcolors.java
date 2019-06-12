@@ -15,6 +15,8 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 	
 	private String name;
 	
+	private Integer patientId;
+	
 	public String getName() {
 		return name;
 	}
@@ -23,23 +25,30 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 		this.name = name;
 	}
 	
-	public Integer getPatientcolorId() {
+	public Integer getPatientcolorsId() {
 		return patientcolorsId;
 	}
 	
-	public void setPatientcolorId(Integer patientcolorId) {
-		this.patientcolorsId = patientcolorId;
+	public void setPatientcolorsId(Integer patientcolorsId) {
+		this.patientcolorsId = patientcolorsId;
 	}
 	
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+	
+	public Integer getPatientId() {
+		return patientId;
+	}
+	
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
 	}
 	
 	@Override
 	public void setId(Integer arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
