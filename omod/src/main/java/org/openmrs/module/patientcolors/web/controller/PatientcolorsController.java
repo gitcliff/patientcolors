@@ -12,9 +12,6 @@ package org.openmrs.module.patientcolors.web.controller;
 import java.io.IOException;
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.patientcolors.patientcolors;
@@ -27,11 +24,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This class configured as controller using annotation and mapped with the URL of
- * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
+ * 'module/${rootArtifactid}/${rootArtifactid}Link.form'. /
  */
 @Controller
 public class PatientcolorsController {
@@ -40,7 +38,7 @@ public class PatientcolorsController {
 	protected final Logger log = LoggerFactory.getLogger(PatientcolorsController.class);
 	
 	@RequestMapping(value = "/module/patientcolors/patientcolors.form", method = RequestMethod.GET)
-	public ModelAndView formGet(ModelMap map) {
+	public ModelAndView displaycolor(ModelMap map) {
 		Collection<Patient> patients = Context.getPatientService().getAllPatients();
 		map.addAttribute("patients", patients);
 		
@@ -48,32 +46,28 @@ public class PatientcolorsController {
 		return modelAndView;
 	}
 	
-	@SuppressWarnings("unused")
 	@RequestMapping(value = "/module/patientcolors/patientcolors.form", method = RequestMethod.POST)
-	public String formPost(@ModelAttribute("patientcolors") patientcolors patientcolorss, BindingResult errors,
-	        ModelMap model, HttpSession session, HttpServletRequest request) throws IOException {
+	public String addcolor(@ModelAttribute("patientcolorss") patientcolors patientcolorss, BindingResult errors,
+	        ModelMap model, SessionStatus status) throws IOException {
 		
 		if (errors.hasErrors()) {
 			return "/module/patientcolors/patientcolors.form";
 		} else {
-			patientcolors xxx = new patientcolors();
 			
-			xxx.setName((String) request.getAttribute("color"));
-			String patientid = (String) request.getAttribute("patient_id");
-			try {
-			xxx.setPatientId(Integer.parseInt(patientid));
-			}
-			catch (NumberFormatException e) {
-				log.info("the exception has been handled");
-			}
-			Context.getService(PatientcolorsService.class).savepatientcolor(xxx);
-			
+			Context.getService(PatientcolorsService.class).savepatientcolor(patientcolorss);
 			Collection<Patient> patients = Context.getPatientService().getAllPatients();
-			model.addAttribute("patients", patients);
 			
-			return "/module/patientcolors/viewpatientcolors";
-			
+			model.addAttribute("patient", patients);
+			model.addAttribute("patientId", patientcolorss.getPatientId());
+			model.addAttribute("name", patientcolorss.getName());
+			model.addAttribute("msg", "Color added successfully");
+			status.setComplete();
+			return "redirect:/module/patientcolors/successviewcolor";
 		}
-		
+	}
+	
+	@RequestMapping(value = "/module/patientcolors/successviewcolor", method = RequestMethod.GET)
+	public String successviewcolor() {
+		return "/module/patientcolors/viewpatientcolors";
 	}
 }
