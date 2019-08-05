@@ -30,6 +30,6 @@ public interface PatientcolorsService extends OpenmrsService {
 	
 	void purgePatientcolor(patientcolors patientcolor);
 	
-	patientcolors savepatientcolor(patientcolors patientcolor);
+	patientcolors savepatientcolor(patientcolors patientcolorss);
 	
 }

@@ -28,4 +28,11 @@
 			<column name="patient_id" type="int" />
 		</addColumn>
 	</changeSet>
+	<changeSet author="cliff" id="201608021223" >
+		<comment>Adding patient_name to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="patient_name" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+	
 </databaseChangeLog>

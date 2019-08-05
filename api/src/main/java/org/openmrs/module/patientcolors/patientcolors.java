@@ -17,6 +17,8 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 	
 	private Integer patientId;
 	
+	private String patientname;
+	
 	public String getName() {
 		return name;
 	}
@@ -50,6 +52,14 @@ public class patientcolors extends BaseOpenmrsObject implements Serializable {
 	@Override
 	public void setId(Integer arg0) {
 		
+	}
+	
+	public String getPatientname() {
+		return patientname;
+	}
+	
+	public void setPatientname(String patientname) {
+		this.patientname = patientname;
 	}
 	
 }
