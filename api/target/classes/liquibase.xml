@@ -35,10 +35,80 @@
 		</addColumn>
 	</changeSet>
 	<changeSet author="cliff" id="201608021224" >
-		<comment>Adding uuid to the table patient_colors</comment>
+		<comment>Adding  uuid to the table patient_colors</comment>
 		<addColumn tableName="patient_colors">
 			<column name="uuid" type="varchar(38)" />
 		</addColumn>
 	</changeSet>
 	
+	<changeSet author="cliff" id="201608021225">
+		<comment>Adding void_reason to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="void_reason" type="varchar(255)"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021226">
+		<comment>Adding voided to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="voided" type="boolean" defaultValueBoolean="false"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021227">
+		<comment>Adding date_voided to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="date_voided" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="201608021229" author="cliff">
+		<preConditions>
+			<columnExists tableName="patient_colors" columnName="uuid"/>
+		</preConditions>
+		<comment>Adding unique constraint uuid to table patient_colors</comment>
+		<addUniqueConstraint tableName="patient_colors" columnNames="uuid"/>
+	</changeSet>
+	
+	<changeSet id="201608021210" author="cliff">
+		<comment>Adding a foreign key constraint patient_id to table patient_colors</comment>
+		<addForeignKeyConstraint baseColumnNames="patient_id" baseTableName="patient_colors" constraintName="patient_colors_patient_id_fk" deferrable="false" initiallyDeferred="false" referencedColumnNames="patient_id" referencedTableName="patient"/>
+	</changeSet>
+	<changeSet id="201608021211" author="cliff">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="patient_colors" columnName="voided_by" />
+        </preConditions>
+        <comment>Dropping voided_by column from patient_colors table
+        </comment>
+        <dropColumn tableName="patient_colors" columnName="voided_by" />
+    </changeSet>
+    
+    <changeSet author="cliff" id="201608021211">
+		<comment>Adding voided_by to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="voided_by" type="int"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021212">
+		<comment>Adding changed_by to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="changed_by" type="int"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021213">
+		<comment>Adding date_created to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="date_created" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021214">
+		<comment>Adding date_changed to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="date_changed" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="cliff" id="201608021215">
+		<comment>Adding creator to the table patient_colors</comment>
+		<addColumn tableName="patient_colors">
+			<column name="creator" type="int"/>
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>

@@ -1,4 +1,0 @@
-org\openmrs\module\patientcolors\web\controller\PatientcolorsController.class
-org\openmrs\module\patientcolors\web\controller\PatientcolorsResource.class
-org\openmrs\module\patientcolors\web\controller\PatientcolorsResourceController.class
-org\openmrs\module\patientcolors\extension\html\AdminList.class

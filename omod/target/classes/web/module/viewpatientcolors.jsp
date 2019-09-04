@@ -13,8 +13,8 @@
 <font color='green'>${msg}</front>
 <tr>
 <td> <c:out value = "${patientcolorss.patientcolorsId}"/></td>
-<td><c:out value = "${patientcolorss.patientId}"/></td>
-<td><c:out value = "${patientcolorss.name}" /></td>
+<td><c:out value = "${patientcolorss.getPatientId()}"/></td>
+<td><c:out value = "${patientcolorss.getName()}" /></td>
 </tr>
 </body>
 </table>

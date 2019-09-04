@@ -1,9 +1,13 @@
 package org.openmrs.module.patientcolors.web.controller;
 
+import org.openmrs.api.context.Context;
 import org.openmrs.module.patientcolors.patientcolors;
+import org.openmrs.module.patientcolors.api.PatientcolorsService;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.annotation.Resource;
+import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
+import org.openmrs.module.webservices.rest.web.representation.FullRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
@@ -14,20 +18,37 @@ public class PatientcolorsResource extends DataDelegatingCrudResource<patientcol
 	
 	@Override
 	public DelegatingResourceDescription getRepresentationDescription(Representation rep) {
-		// TODO Auto-generated method stub
+		if (rep instanceof DefaultRepresentation) {
+			DelegatingResourceDescription description = new DelegatingResourceDescription();
+			description.addProperty("uuid");
+			description.addProperty("name");
+			description.addProperty("patientname");
+			description.addSelfLink();
+			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
+			return description;
+		} else if (rep instanceof FullRepresentation) {
+			DelegatingResourceDescription description = new DelegatingResourceDescription();
+			description.addProperty("uuid");
+			description.addProperty("name");
+			description.addProperty("patientname");
+			description.addProperty("auditInfo");
+			description.addSelfLink();
+			return description;
+		}
 		return null;
 	}
 	
 	@Override
 	public patientcolors getByUniqueId(String string) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
 	@Override
 	public patientcolors save(patientcolors delegate) {
 		// TODO Auto-generated method stub
-		return null;
+		return Context.getService(PatientcolorsService.class).savepatientcolor(delegate);
+		
 	}
 	
 	@Override
@@ -38,14 +59,19 @@ public class PatientcolorsResource extends DataDelegatingCrudResource<patientcol
 	
 	@Override
 	public void purge(patientcolors delegate, RequestContext context) throws ResponseException {
-		// TODO Auto-generated method stub
+		
+		if (delegate == null) {
+			// DELETE is idempotent, so we return success here
+			return;
+		}
+		Context.getService(PatientcolorsService.class).purgePatientcolor(delegate);
 		
 	}
 	
 	@Override
 	public patientcolors newDelegate() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new patientcolors();
 	}
 	
 }

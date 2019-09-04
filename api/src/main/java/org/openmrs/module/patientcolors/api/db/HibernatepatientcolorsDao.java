@@ -31,6 +31,7 @@ public class HibernatepatientcolorsDao implements PatientcolorsDao {
 		return sessionFactory.getCurrentSession().createCriteria(patientcolors.class).list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<patientcolors> getpatientcolor(Integer patientcolorsId) throws DAOException {
 		
@@ -52,6 +53,7 @@ public class HibernatepatientcolorsDao implements PatientcolorsDao {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<patientcolors> getAllpatientcolors(String string, int patientId, int patientcolorsId) throws DAOException {
 		

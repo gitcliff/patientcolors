@@ -2,15 +2,30 @@ package org.openmrs.module.patientcolors;
 
 import java.io.Serializable;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
 import org.openmrs.BaseOpenmrsData;
 
+@Entity
+@Table(name = "patients_colors")
 public class patientcolors extends BaseOpenmrsData implements Serializable {
 	
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue
+	@JoinColumn(name = "patient_colors_id", nullable = false)
+	@Access(AccessType.PROPERTY)
 	private Integer patientcolorsId;
 	
 	private String name;
@@ -18,6 +33,16 @@ public class patientcolors extends BaseOpenmrsData implements Serializable {
 	private Integer patientId;
 	
 	private String patientname;
+	
+	//private Integer id;
+	
+	//private Boolean voided = Boolean.FALSE;
+	
+	//private User voidedBy;
+	
+	//private String voidReason;
+	
+	//private Date dateVoided;
 	
 	public String getName() {
 		return name;
@@ -38,7 +63,7 @@ public class patientcolors extends BaseOpenmrsData implements Serializable {
 	@Override
 	public Integer getId() {
 		
-		return null;
+		return getPatientcolorsId();
 	}
 	
 	public Integer getPatientId() {
@@ -51,7 +76,7 @@ public class patientcolors extends BaseOpenmrsData implements Serializable {
 	
 	@Override
 	public void setId(Integer arg0) {
-		
+		setPatientcolorsId(arg0);
 	}
 	
 	public String getPatientname() {

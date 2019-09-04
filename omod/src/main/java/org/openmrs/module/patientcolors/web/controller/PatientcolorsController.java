@@ -53,9 +53,9 @@ public class PatientcolorsController {
 		if (errors.hasErrors()) {
 			return "/module/patientcolors/patientcolors.form";
 		} else {
-			
-			Context.getService(PatientcolorsService.class).savepatientcolor(patientcolorss);
 			Collection<Patient> patients = Context.getPatientService().getAllPatients();
+			Context.getService(PatientcolorsService.class).savepatientcolor(patientcolorss);
+			Context.getPatientService().getAllPatients();
 			
 			model.addAttribute("patient", patients);
 			model.addAttribute("patientId", patientcolorss.getPatientId());
